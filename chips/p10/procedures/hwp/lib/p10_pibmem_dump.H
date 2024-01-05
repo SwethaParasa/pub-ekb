@@ -33,11 +33,11 @@
 /// *Consumed by : TBD
 /// *Level       :
 ///
-
+#include <poz_pibmem_dump.H>
 #ifndef __P10_PIBMEM_DUMP_H__
 #define __P10_PIBMEM_DUMP_H__
 
-typedef struct
+/*typedef struct
 {
     uint32_t read_addr;
     uint64_t read_data;
@@ -49,7 +49,7 @@ typedef enum
     INTERMEDIATE_TILL_END = 1,                  // Dump from Address till End of PIBMEM
     START_TILL_INTERMEDIATE = 2,                // Dump from Start till Number of Bytes
     INTERMEDIATE_TILL_INTERMEDIATE = 3          // Dump from Address till Number of Bytes
-} user_options;
+} user_options;*/
 
 /// @typedef p10_pibmem_dump_FP_t
 /// function pointer typedef definition for HWP call support

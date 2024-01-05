@@ -28,10 +28,10 @@
 /// *Level       : my
 ///
 
-
+#include <poz_sbe_localreg_dump.H>
 #ifndef __ODY_SBE_LOCALREG_DUMP_H__
 #define __ODY_SBE_LOCALREG_DUMP_H__
-typedef struct
+/*typedef struct
 {
     uint16_t     number;
     std::string  name;
@@ -47,7 +47,7 @@ typedef struct
 {
     SBEReg_t    reg;
     uint64_t    value;
-} SBESCOMRegValue_t;
+} SBESCOMRegValue_t;*/
 
 
 /// @typedef p10_sbe_localreg_dump_FP_t
