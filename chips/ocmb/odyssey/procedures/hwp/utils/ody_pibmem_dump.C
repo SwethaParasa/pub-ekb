@@ -44,12 +44,12 @@
 SCOMT_PERV_USE_FSXCOMP_FSXLOG_ROOT_CTRL0;
 SCOMT_PERV_USE_FSXCOMP_FSXLOG_SB_CS;
 SCOMT_PERV_USE_FSXCOMP_FSXLOG_CBS_CS;
-static const uint32_t ODY_PIBMEM_START_ARRAY_ADDRESS   = 0xFFF80000;
-static const uint32_t ODY_DEPTH_OF_PIBMEM              = 0x00080000;
+static const uint32_t ODY_PIBMEM_START_ARRAY_ADDRESS   = 0x00000000;
+static const uint32_t ODY_DEPTH_OF_PIBMEM              = 0x00010000;
 static const uint32_t PIBMEM_CTRL_REG                  = 0x000D0010;
 static const uint32_t PIBMEM_ADDR_REG                  = 0x000D0011;
 static const uint32_t PIBMEM_AUTO_INCR_REG             = 0x000D0013;
-static const uint32_t ODY_PIBMEM_ADDR_OFFSET           = 0xFFF80000;
+static const uint32_t ODY_PIBMEM_ADDR_OFFSET           = 0x00000000;
 static const uint64_t TPCHIP_CLOCK_STAT_SL = 0x01030008;
 static const uint64_t TPCHIP_CPLT_CTRL1    = 0x01000001;
 
@@ -65,7 +65,6 @@ fapi2::ReturnCode ody_pibmem_dump(
     std::vector<pibmem_array_data_t>& o_pibmem_contents)
 {
     uint32_t start_address, num_of_address, end_address;
-    uint32_t pibmem_indirect_addr;
     uint32_t PIBMEM_START_ARRAY_ADDRESS = ODY_PIBMEM_START_ARRAY_ADDRESS;
     uint32_t DEPTH_OF_ARRAY = ODY_DEPTH_OF_PIBMEM;
     bool sab, sdb;
@@ -150,10 +149,7 @@ fapi2::ReturnCode ody_pibmem_dump(
         num_of_address = DEPTH_OF_ARRAY;
     }
 
-    // Indirect mode of accessing PIBMEM
-    pibmem_indirect_addr = (start_address - ODY_PIBMEM_ADDR_OFFSET) >> 3;
-
-    FAPI_TRY(putScom(i_target, PIBMEM_ADDR_REG, pibmem_indirect_addr));
+    FAPI_TRY(putScom(i_target, PIBMEM_ADDR_REG, start_address));
 
     for(uint32_t i = 0; i < num_of_address; i++)
     {
